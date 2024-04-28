@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
+
 *
 {
     box-sizing: border-box;
@@ -5,32 +7,107 @@
     padding: 0; 
 }
 
+.league-spartan {
+    font-family: "League Spartan", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
+  }
+  
+
 .container
 {
     height: 100vh; 
     display: grid; 
-    grid-template-rows: 1fr 5fr 1fr;
+    grid-template-rows: 1fr 5fr 0.5fr;
 }
 
 .header
 {
-    background-color: bisque;
     padding: 10px;
-    display: grid; 
-    grid-template-columns: 1fr 1fr;
+    display: flex; 
+    justify-content: space-evenly;
     align-items: center;
+    font-size: 40px; 
+    gap: 400px;
+    border-bottom: 3px solid black; 
+    box-shadow: 5px 10px rgb(226, 223, 223);
 }
-.header .clear
+#clear
 {
-    text-align: end;
+    display: flex;
+    align-items: center;
+    font-family: "League Spartan", sans-serif; 
+    font-weight: 800; 
+    font-style: normal; 
+    font-optical-sizing: normal;
+    font-size: 40px; 
+    background-color: transparent;
+    border-radius: 10px; 
+    padding: 10px; 
+    border: none;
+    outline: none;
+}
+#clear:hover
+{
+    background-color: rgb(226, 223, 223);
 }
 
 
+/* Start of Display */
 .display
 {
-    background-color: grey;
+    background-color: white;
 }
+
+.inital_display
+{
+    display: flex; 
+    justify-content: center;
+    margin: 100px; 
+    font-weight: 800; 
+    font-size: 25px; 
+    font-family: "League Spartan", sans-serif;
+}
+.material-symbols-outlined 
+{
+    font-variation-settings: 
+    'Fill' 0, 
+    'wght' 400, 
+    'GRAD' 0, 
+    'opsz' 24
+}
+
+.add_text
+{
+    display: flex; 
+    align-items: center;
+    border-radius: 10px; 
+    padding: 10px; 
+}
+.add_text span
+{
+    font-size: 35px;
+}
+
+.add_text:hover
+{
+    background-color: rgb(226, 223, 223);
+}
+
+
+/* Start of Footer*/ 
 .footer
 {
-    background-color: bisque;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    gap: 10px; 
+    font-size: 25px; 
+    font-weight: 800; 
+    font-family: "League Spartan", sans-serif;
+}
+.footer svg:hover
+{
+    background-color: rgb(226, 223, 223);
 }
