@@ -68,29 +68,11 @@
     font-weight: 800; 
     font-size: 25px; 
     font-family: "League Spartan", sans-serif;
-}
-.material-symbols-outlined 
-{
-    font-variation-settings: 
-    'Fill' 0, 
-    'wght' 400, 
-    'GRAD' 0, 
-    'opsz' 24
-}
-
-.add_text
-{
-    display: flex; 
-    align-items: center;
+    padding: 10px;
     border-radius: 10px; 
-    padding: 10px; 
-}
-.add_text span
-{
-    font-size: 35px;
 }
 
-.add_text:hover
+.inital_display:hover
 {
     background-color: rgb(226, 223, 223);
 }
