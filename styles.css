@@ -4,6 +4,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    overflow: scroll; 
 }
 
 .league-spartan {
@@ -28,7 +29,7 @@
     font-size: 40px;
     gap: 400px;
     border-bottom: 3px solid black;
-    box-shadow: 5px 10px rgb(226, 223, 223);
+    box-shadow: 1px 2px rgb(226, 223, 223);
 }
 
 #clear {
@@ -53,7 +54,6 @@
 
 /* Start of Display */
 .display {
-    background-color: beige;
     display: grid; 
     grid-template-rows: 1fr 5fr;
 }
@@ -74,16 +74,54 @@
     background-color: rgb(226, 223, 223);
 }
 
+/* Display of Books*/
+
 .books {
     display: grid; 
-    grid-template-columns: repeat(auto-fill, 250px);
-    grid-template-rows: repeat(auto-fill, 250px);
+    grid-template-columns: repeat(3, minmax(250px, 1fr));
+    grid-template-rows: repeat(3, minmax(250px, 1fr));
     justify-content: center;
+    gap: 25px;
+    align-items: center;
 }
 
-.books div
+.book
 {
-    text-align: center;
+    background-color: #fef3c7;
+    border-radius: 10px;
+    padding: 15px;
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+    gap: 10px; 
+    font-size: 20px;
+    font-family: "League Spartan", sans-serif; 
+    font-weight: 500; 
+    justify-content: center;
+    outline: 1px solid black; 
+}
+
+.remove-button
+{
+    width: 200px; 
+    height: 40px; 
+    background-color: white;
+    border-radius: 5px;
+}
+
+.not-read
+{
+    width: 200px; 
+    height: 40px; 
+    background-color: rgba(240, 206, 206, 0.753);
+    border-radius: 5px; 
+}
+
+.is-read {
+    width: 200px;
+    height: 40px;
+    background-color: rgba(99, 224, 94, 0.685);
+    border-radius: 5px; 
 }
 
 
@@ -125,6 +163,7 @@
     padding: 30px;
     border-radius: 10px; 
     font-family: "League Spartan", sans-serif;
+    outline: 1px solid black; 
 }
 
 #input_Title, #input_Author, #input_Pages
