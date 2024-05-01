@@ -37,6 +37,7 @@ function submit() {
 }
 
 function render() {
+    console.log("Hello World");
     bookElements = getBook();
 
     const book = document.createElement("div");
@@ -55,28 +56,27 @@ function render() {
     book.appendChild(author);
     book.appendChild(pages);
 
-    addButtons(book, bookElements);
-}
-
-function addButtons(parent, elements) {
     const readBtn = document.createElement("button");
     const removeBtn = document.createElement("button");
 
     readBtn.classList.add("is-read");
     removeBtn.classList.add("remove-button");
 
-    parent.appendChild(readBtn);
-    parent.appendChild(removeBtn);
+    book.appendChild(readBtn);
+    book.appendChild(removeBtn);
 
+    book.appendChild(readBtn);
+    book.appendChild(removeBtn);
 
-    readBtn.addEventListener('click', () => {
-        if (elements.isRead == true) {
-            readBtn.classList.remove('is-read');
-            readBtn.classList.add("not-read");
+    readBtn.addEventListener('click',() => 
+    {
+        if(readBtn.style.backgroundColor == 'rgba(240, 206, 206, 0.753)')
+        {
+            readBtn.style.backgroundColor = 'rgba(99, 224, 94, 0.685)'; 
         }
-        else {
-            readBtn.classList.remove('not-read');
-            readBtn.classList.add('is-read');
+        else
+        {
+            readBtn.style.backgroundColor = 'rgba(240, 206, 206, 0.753)';
         }
     });
 }
