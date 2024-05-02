@@ -58,24 +58,12 @@ function render() {
     const readBtn = document.createElement("button");
     const removeBtn = document.createElement("button");
     if (bookElements.isChecked == true) {
-        readBtn.style.backgroundColor = "rgba(99, 224, 94, 0.685";
-        readBtn.style.width = "200px";
-        readBtn.style.height = "40px";
-        readBtn.style.borderRadius = "5px";
-        readBtn.style.fontFamily = "League Spartan";
-        readBtn.style.fontWeight = "500";
-        readBtn.style.fontSize = "15px";
-        readBtn.textContent = "Read";
+        readBtn.classList.add("is-read");
+        readBtn.textContent = "Read"; 
     }
     else {
-        readBtn.style.backgroundColor = "rgba(240, 206, 206, 0.753";
-        readBtn.style.width = "200px";
-        readBtn.style.height = "40px";
-        readBtn.style.borderRadius = "5px";
-        readBtn.style.fontFamily = "League Spartan";
-        readBtn.style.fontWeight = "500";
-        readBtn.style.fontSize = "15px";
-        readBtn.textContent = "Not Read";
+        readBtn.classList.add("not-read");
+        readBtn.textContent = "Not Read"; 
     }
     removeBtn.classList.add("remove-button");
     removeBtn.textContent = "Remove";
@@ -87,13 +75,16 @@ function render() {
     book.appendChild(removeBtn);
 
     readBtn.addEventListener('click', () => {
-        if (readBtn.style.backgroundColor == 'rgba(240, 206, 206, 0.753)') {
+
+        if (readBtn.textContent == 'Not Read') {
             readBtn.textContent = "Read";
-            readBtn.style.backgroundColor = 'rgba(99, 224, 94, 0.685)';
+            readBtn.classList.remove("not-read");
+            readBtn.classList.add("is-read");
         }
         else {
+            readBtn.classList.remove("is-read");
+            readBtn.classList.add("not-read");
             readBtn.textContent = "Not Read";
-            readBtn.style.backgroundColor = 'rgba(240, 206, 206, 0.753)';
         }
     });
 
