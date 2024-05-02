@@ -37,7 +37,6 @@ function submit() {
 }
 
 function render() {
-    console.log("Hello World");
     bookElements = getBook();
 
     const book = document.createElement("div");
@@ -58,9 +57,28 @@ function render() {
 
     const readBtn = document.createElement("button");
     const removeBtn = document.createElement("button");
-
-    readBtn.classList.add("is-read");
+    if (bookElements.isChecked == true) {
+        readBtn.style.backgroundColor = "rgba(99, 224, 94, 0.685";
+        readBtn.style.width = "200px";
+        readBtn.style.height = "40px";
+        readBtn.style.borderRadius = "5px";
+        readBtn.style.fontFamily = "League Spartan";
+        readBtn.style.fontWeight = "500";
+        readBtn.style.fontSize = "15px";
+        readBtn.textContent = "Read";
+    }
+    else {
+        readBtn.style.backgroundColor = "rgba(240, 206, 206, 0.753";
+        readBtn.style.width = "200px";
+        readBtn.style.height = "40px";
+        readBtn.style.borderRadius = "5px";
+        readBtn.style.fontFamily = "League Spartan";
+        readBtn.style.fontWeight = "500";
+        readBtn.style.fontSize = "15px";
+        readBtn.textContent = "Not Read";
+    }
     removeBtn.classList.add("remove-button");
+    removeBtn.textContent = "Remove";
 
     book.appendChild(readBtn);
     book.appendChild(removeBtn);
@@ -68,21 +86,25 @@ function render() {
     book.appendChild(readBtn);
     book.appendChild(removeBtn);
 
-    readBtn.addEventListener('click',() => 
-    {
-        if(readBtn.style.backgroundColor == 'rgba(240, 206, 206, 0.753)')
-        {
-            readBtn.style.backgroundColor = 'rgba(99, 224, 94, 0.685)'; 
+    readBtn.addEventListener('click', () => {
+        if (readBtn.style.backgroundColor == 'rgba(240, 206, 206, 0.753)') {
+            readBtn.textContent = "Read";
+            readBtn.style.backgroundColor = 'rgba(99, 224, 94, 0.685)';
         }
-        else
-        {
+        else {
+            readBtn.textContent = "Not Read";
             readBtn.style.backgroundColor = 'rgba(240, 206, 206, 0.753)';
         }
     });
+
+    toggleRemove(book, removeBtn);
 }
 
-function toggleRemove() {
-
+function toggleRemove(b, button) {
+    button.addEventListener('click', () => {
+        b.replaceChildren();
+        b.remove();
+    });
 }
 
 function clear() {
@@ -96,3 +118,4 @@ function clear() {
 addBook();
 getBook();
 submit();
+clear(); 
