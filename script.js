@@ -23,12 +23,12 @@ function getBook() {
 function addBook() {
     addBookBtn.addEventListener('click', () => {
         modal.style.display = "block";
-        books.style.display = "grid";
     });
 }
 function submit() {
     const submitBookBtn = document.querySelector("#submit");
-    submitBookBtn.addEventListener('click', () => {
+    submitBookBtn.addEventListener('click', (e) => {
+        e.preventDefault();
         submitBookReport = getBook();
         myLibrary.push(submitBookReport);
         modal.style.display = "none";
@@ -37,7 +37,7 @@ function submit() {
 }
 
 function render() {
-    bookElements = getBook();
+    bookElements = myLibrary[myLibrary.length - 1];
 
     const book = document.createElement("div");
     const title = document.createElement("p");
@@ -56,14 +56,16 @@ function render() {
     book.appendChild(pages);
 
     const readBtn = document.createElement("button");
+    readBtn.type = "button";
     const removeBtn = document.createElement("button");
-    if (bookElements.isChecked == true) {
+    removeBtn.type = "button";
+    if (bookElements.isRead == true) {
         readBtn.classList.add("is-read");
-        readBtn.textContent = "Read"; 
+        readBtn.textContent = "Read";
     }
     else {
         readBtn.classList.add("not-read");
-        readBtn.textContent = "Not Read"; 
+        readBtn.textContent = "Not Read";
     }
     removeBtn.classList.add("remove-button");
     removeBtn.textContent = "Remove";
@@ -71,11 +73,8 @@ function render() {
     book.appendChild(readBtn);
     book.appendChild(removeBtn);
 
-    book.appendChild(readBtn);
-    book.appendChild(removeBtn);
-
-    readBtn.addEventListener('click', () => {
-
+    readBtn.addEventListener('click', (e) => {
+        e.preventDefault();
         if (readBtn.textContent == 'Not Read') {
             readBtn.textContent = "Read";
             readBtn.classList.remove("not-read");
@@ -92,14 +91,16 @@ function render() {
 }
 
 function toggleRemove(b, button) {
-    button.addEventListener('click', () => {
+    button.addEventListener('click', (e) => {
+        e.preventDefault();
         b.replaceChildren();
         b.remove();
     });
 }
 
 function clear() {
-    clearBtn.addEventListener('click', () => {
+    clearBtn.addEventListener('click', (e) => {
+        e.preventDefault();
         books.replaceChildren();
     });
 }
