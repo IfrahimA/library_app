@@ -1,4 +1,5 @@
 const clearBtn = document.getElementById("clear");
+const addBookForm = document.getElementById('addBookForm'); 
 const addBookBtn = document.querySelector(".inital_display");
 const books = document.querySelector(".books");
 const modal = document.querySelector(".modal");
@@ -22,6 +23,7 @@ function getBook() {
 
 function addBook() {
     addBookBtn.addEventListener('click', () => {
+        addBookForm.reset(); 
         modal.style.display = "block";
     });
 }
