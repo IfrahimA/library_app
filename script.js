@@ -72,8 +72,6 @@ const submit = () =>
         myLibrary.addBook(newBook); 
         modal.classList.remove('is-active');
         render(newBook);
-        console.log(myLibrary);
-        console.log(books); 
     });
 }
 
@@ -99,7 +97,16 @@ const render = (bookObj) =>
     book.appendChild(removeBtn); 
 
     book.classList.add('book');
-    isRead.classList.add(isRead.textContent === 'false' ? 'not-read' : 'is-read');
+    if(isRead.textContent === 'false')
+    {
+        isRead.textContent = "Not Read"; 
+        isRead.classList.add("not-read"); 
+    }
+    else
+    {
+        isRead.textContent = "Read"; 
+        isRead.classList.add("is-read"); 
+    }
     removeBtn.classList.add('remove-button'); 
     
     books.appendChild(book); 
@@ -118,16 +125,18 @@ const render = (bookObj) =>
         }
     });
 
-    
+    removeBtn.addEventListener('click', () => 
+    {
+        myLibrary.removeBook(bookObj);
+        book.remove();
+    });
 
-
-
-
-
+    console.log(myLibrary); 
 }
 
-newBooks();
-submit();
-
+(function() {
+    newBooks(); 
+    submit(); 
+})();
 
 
