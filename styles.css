@@ -245,3 +245,10 @@
     margin-top: 25px;
     font-weight: 800;
 }
+
+/* Active and Inactive Modals */
+
+.is-active
+{
+    display: block; 
+}

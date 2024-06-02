@@ -1,115 +1,133 @@
-const clearBtn = document.getElementById("clear");
-const addBookForm = document.getElementById('addBookForm'); 
-const addBookBtn = document.querySelector(".inital_display");
-const books = document.querySelector(".books");
-const modal = document.querySelector(".modal");
+class Library
+{
+    constructor() {
+        this.lib = []; 
+    }
 
-const myLibrary = [];
+    addBook(bookObject)
+    {
+        this.lib.push(bookObject)
+    }
 
-function Book(title, author, pages, isRead) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.isRead = isRead;
+    removeBook(bookObject)
+    {
+        this.lib = this.lib.filter(book => book != bookObject);
+    }
+
+} 
+
+class Book {
+    
+    constructor(title, author, pages, isRead) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.isRead = isRead;
+    }
+
+    setBook(t, a, p, iR)
+    {
+        this.title = t; 
+        this.author = a; 
+        this.pages = p; 
+        this.isRead = iR; 
+    }
+
+    getBook()
+    {
+        return {
+            title: this.title,
+            author: this.author,
+            pages: this.pages,
+            isRead: this.isRead,
+        };
+    }
 }
 
-function getBook() {
-    const inputTitle = document.getElementById("input_Title").value;
-    const inputAuthor = document.getElementById("input_Author").value;
-    const inputPages = document.getElementById("input_Pages").value;
-    const isChecked = document.getElementById("read").checked;
-    return new Book(inputTitle, inputAuthor, inputPages, isChecked);
-}
+const myLibrary = new Library(); 
+const books = document.querySelector('.books'); 
+const clearBtn = document.getElementById('clear');
+const addBookBtn = document.querySelector('.inital_display');
+const modal = document.querySelector('.modal');
+const submitBtn = document.getElementById('submit');
 
-function addBook() {
-    addBookBtn.addEventListener('click', () => {
-        addBookForm.reset(); 
-        modal.style.display = "block";
+const newBooks = () =>
+{
+    addBookBtn.addEventListener('click', () => 
+    {
+        modal.classList.add('is-active');
     });
 }
-function submit() {
-    const submitBookBtn = document.querySelector("#submit");
-    submitBookBtn.addEventListener('click', (e) => {
+
+const submit = () => 
+{
+    submitBtn.addEventListener('click', (e) =>
+    {
         e.preventDefault();
-        submitBookReport = getBook();
-        myLibrary.push(submitBookReport);
-        modal.style.display = "none";
-        render();
+        const inputTitle = document.getElementById('input_Title');
+        const inputAuthor = document.getElementById('input_Author');
+        const inputPages = document.getElementById('input_Pages');
+        const isChecked = document.getElementById('read');
+        const newBook = new Book(inputTitle.value, inputAuthor.value, inputPages.value, isChecked.checked);
+        myLibrary.addBook(newBook); 
+        modal.classList.remove('is-active');
+        render(newBook);
+        console.log(myLibrary);
+        console.log(books); 
     });
 }
 
-function render() {
-    bookElements = myLibrary[myLibrary.length - 1];
-
+const render = (bookObj) => 
+{
     const book = document.createElement("div");
     const title = document.createElement("p");
     const author = document.createElement("p");
     const pages = document.createElement("p");
+    const isRead = document.createElement("button"); 
+    const removeBtn = document.createElement("button"); 
 
-    title.textContent = bookElements.title;
-    author.textContent = bookElements.author;
-    pages.textContent = bookElements.pages + " pages";
+    title.textContent = bookObj.title;
+    author.textContent = bookObj.author; 
+    pages.textContent = bookObj.pages; 
+    isRead.textContent = bookObj.isRead;
+    removeBtn.textContent = "Remove"; 
 
-    book.classList.add("book");
+    book.appendChild(title); 
+    book.appendChild(author); 
+    book.appendChild(pages); 
+    book.appendChild(isRead);
+    book.appendChild(removeBtn); 
 
-    books.appendChild(book);
-    book.appendChild(title);
-    book.appendChild(author);
-    book.appendChild(pages);
+    book.classList.add('book');
+    isRead.classList.add(isRead.textContent === 'false' ? 'not-read' : 'is-read');
+    removeBtn.classList.add('remove-button'); 
+    
+    books.appendChild(book); 
 
-    const readBtn = document.createElement("button");
-    readBtn.type = "button";
-    const removeBtn = document.createElement("button");
-    removeBtn.type = "button";
-    if (bookElements.isRead == true) {
-        readBtn.classList.add("is-read");
-        readBtn.textContent = "Read";
-    }
-    else {
-        readBtn.classList.add("not-read");
-        readBtn.textContent = "Not Read";
-    }
-    removeBtn.classList.add("remove-button");
-    removeBtn.textContent = "Remove";
-
-    book.appendChild(readBtn);
-    book.appendChild(removeBtn);
-
-    readBtn.addEventListener('click', (e) => {
+    isRead.addEventListener('click', (e) => {
         e.preventDefault();
-        if (readBtn.textContent == 'Not Read') {
-            readBtn.textContent = "Read";
-            readBtn.classList.remove("not-read");
-            readBtn.classList.add("is-read");
+        if (isRead.textContent == 'Not Read') {
+            isRead.textContent = "Read";
+            isRead.classList.remove("not-read");
+            isRead.classList.add("is-read");
         }
         else {
-            readBtn.classList.remove("is-read");
-            readBtn.classList.add("not-read");
-            readBtn.textContent = "Not Read";
+            isRead.classList.remove("is-read");
+            isRead.classList.add("not-read");
+            isRead.textContent = "Not Read";
         }
     });
 
-    toggleRemove(book, removeBtn);
+    
+
+
+
+
+
 }
 
-function toggleRemove(b, button) {
-    button.addEventListener('click', (e) => {
-        e.preventDefault();
-        b.replaceChildren();
-        b.remove();
-    });
-}
-
-function clear() {
-    clearBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        books.replaceChildren();
-    });
-}
-
-
-
-addBook();
-getBook();
+newBooks();
 submit();
-clear(); 
+
+
+
