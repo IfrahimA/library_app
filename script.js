@@ -14,6 +14,11 @@ class Library
         this.lib = this.lib.filter(book => book != bookObject);
     }
 
+    clear()
+    {
+        this.lib.length = 0; 
+    }
+
 } 
 
 class Book {
@@ -130,13 +135,22 @@ const render = (bookObj) =>
         myLibrary.removeBook(bookObj);
         book.remove();
     });
+}
 
-    console.log(myLibrary); 
+const clear = () => 
+{
+    clearBtn.addEventListener('click', () => 
+    {
+        books.replaceChildren();
+        myLibrary.clear(); 
+        console.log(myLibrary); 
+    });
 }
 
 (function() {
     newBooks(); 
-    submit(); 
+    submit();
+    clear(); 
 })();
 
 
